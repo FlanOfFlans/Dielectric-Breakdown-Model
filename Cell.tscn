@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://cb21jtv1xvsl2"]
+
+[ext_resource type="Script" path="res://Cell.gd" id="1_vhpc7"]
+
+[sub_resource type="Gradient" id="Gradient_su30a"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0jfla"]
+gradient = SubResource("Gradient_su30a")
+
+[sub_resource type="Gradient" id="Gradient_s44pp"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hwpno"]
+gradient = SubResource("Gradient_s44pp")
+width = 16
+
+[sub_resource type="Gradient" id="Gradient_wsmw0"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q6kpf"]
+gradient = SubResource("Gradient_wsmw0")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_4unon"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2dycn"]
+gradient = SubResource("Gradient_4unon")
+width = 16
+
+[sub_resource type="Gradient" id="Gradient_iro5q"]
+offsets = PackedFloat32Array(0, 0.987013)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yxrhg"]
+gradient = SubResource("Gradient_iro5q")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_2kom4"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h1om7"]
+gradient = SubResource("Gradient_2kom4")
+width = 32
+height = 32
+
+[node name="Cell" type="Sprite2D"]
+texture = SubResource("GradientTexture2D_0jfla")
+script = ExtResource("1_vhpc7")
+
+[node name="FromUp" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+texture = SubResource("GradientTexture2D_hwpno")
+offset = Vector2(0, -32)
+
+[node name="FromRight" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+texture = SubResource("GradientTexture2D_q6kpf")
+offset = Vector2(32, 0)
+
+[node name="FromDown" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+texture = SubResource("GradientTexture2D_2dycn")
+offset = Vector2(0, 32)
+
+[node name="FromLeft" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+texture = SubResource("GradientTexture2D_yxrhg")
+offset = Vector2(-32, 0)
+
+[node name="FromSeed" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+texture = SubResource("GradientTexture2D_h1om7")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0

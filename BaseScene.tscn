@@ -1,0 +1,114 @@
+[gd_scene load_steps=4 format=3 uid="uid://idkjgxot7rki"]
+
+[ext_resource type="Script" path="res://DBM.gd" id="1_uverb"]
+[ext_resource type="PackedScene" uid="uid://cb21jtv1xvsl2" path="res://Cell.tscn" id="2_hqnyu"]
+[ext_resource type="Script" path="res://Inputs/IntOnly.gd" id="3_q6j6j"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_uverb")
+cell = ExtResource("2_hqnyu")
+solver_steps = 50
+solver = 1
+setup = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = -304.0
+offset_top = -304.0
+offset_right = 304.0
+offset_bottom = 304.0
+
+[node name="LineEdit" type="LineEdit" parent="Control"]
+layout_mode = 0
+offset_right = 67.0625
+offset_bottom = 31.0
+
+[node name="Panel2" type="Panel" parent="Control"]
+layout_mode = 2
+offset_left = 316.0
+offset_top = -304.0
+offset_right = 566.0
+offset_bottom = 304.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel2"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 608.0
+
+[node name="Setup" type="Label" parent="Control/Panel2/VBoxContainer"]
+layout_mode = 2
+text = "Setup"
+
+[node name="SetupInput" type="OptionButton" parent="Control/Panel2/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Cirle"
+popup/item_0/disabled = true
+popup/item_1/text = "Square"
+popup/item_1/id = 1
+
+[node name="Radius" type="Label" parent="Control/Panel2/VBoxContainer"]
+layout_mode = 2
+text = "Radius	"
+
+[node name="RadiusInput" type="LineEdit" parent="Control/Panel2/VBoxContainer"]
+layout_mode = 2
+text = "10"
+script = ExtResource("3_q6j6j")
+
+[node name="Solver" type="Label" parent="Control/Panel2/VBoxContainer"]
+layout_mode = 2
+text = "Solver"
+
+[node name="SolverInput" type="OptionButton" parent="Control/Panel2/VBoxContainer"]
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "Jacobi"
+popup/item_1/text = "Gauss-Seidel"
+popup/item_1/id = 1
+
+[node name="SolverSteps" type="Label" parent="Control/Panel2/VBoxContainer"]
+layout_mode = 2
+text = "Solver Steps"
+
+[node name="SolverStepsInput" type="LineEdit" parent="Control/Panel2/VBoxContainer"]
+layout_mode = 2
+text = "50"
+script = ExtResource("3_q6j6j")
+
+[node name="Panel" type="Panel" parent="Control/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="Control/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "GO!"
+
+[connection signal="item_selected" from="Control/Panel2/VBoxContainer/SetupInput" to="." method="set_setup"]
+[connection signal="text_changed" from="Control/Panel2/VBoxContainer/RadiusInput" to="Control/Panel2/VBoxContainer/RadiusInput" method="_on_LineEdit_text_changed"]
+[connection signal="value_updated" from="Control/Panel2/VBoxContainer/RadiusInput" to="." method="set_radius"]
+[connection signal="item_selected" from="Control/Panel2/VBoxContainer/SolverInput" to="." method="set_solver"]
+[connection signal="text_changed" from="Control/Panel2/VBoxContainer/SolverStepsInput" to="Control/Panel2/VBoxContainer/SolverStepsInput" method="_on_LineEdit_text_changed"]
+[connection signal="value_updated" from="Control/Panel2/VBoxContainer/SolverStepsInput" to="." method="set_solver_steps"]
+[connection signal="pressed" from="Control/Panel2/VBoxContainer/Button" to="." method="simulate"]
